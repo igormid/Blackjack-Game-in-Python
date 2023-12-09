@@ -1,6 +1,4 @@
 
-# all that stuff
-
 import random
 import time
 class Card:
@@ -118,17 +116,20 @@ class BlackjackGame:
             """)
 
     def player_turn(self):
-        choice = input("\nDo you want to \033[2;32;50mhit\033[0m, \033[2;31;50mstay\033[0m, or \033[2;33;50mdouble\033[0m? ").lower()
-
-        if choice == 'hit':
-            self.hit()
-        elif choice == 'stay':
-            self.stand()
-        elif choice == 'double':
-            self.double()
-        else:
-            time.sleep(0.5)
-            print("You choose to stand.")
+        while self.player.score < 21:
+            choice = input("\nDo you want to \033[2;32;50mhit\033[0m, \033[2;31;50mstay\033[0m, or \033[2;33;50mdouble\033[0m? ").lower()
+            if choice == 'hit':
+                self.hit()
+            elif choice == 'stay':
+                self.stand()
+                break
+            elif choice == 'double':
+                self.double()
+                break
+            else:
+                time.sleep(0.5)
+                print("You choose to stand.")
+                break
 
     def hit(self):
         self.player.add_card(self.deck)
