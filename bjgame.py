@@ -1,11 +1,11 @@
 
 import random
 import time
+
 class Card:
     def __init__(self, rank, suit):
         self.rank = rank
         self.suit = suit
-
 
     def value(self):
         if self.rank in ['J', 'Q', 'K']:
@@ -15,27 +15,22 @@ class Card:
         else:
             return int(self.rank)
 
-
 class Deck:
     def __init__(self):
         ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
         suits = ['\033[2;31;50m♥\033[0m', '\033[2;31;50m♦\033[0m', '♣', '♠']
         self.cards = [Card(rank, suit) for rank in ranks for suit in suits]
 
-
 class Dealer:
     def __init__(self):
         self.hand = []
         self.score = 0
-
 
     def add_card(self, deck):
         card = random.choice(deck.cards)
         self.hand.append(card)
         self.score += card.value()
         deck.cards.remove(card)
-
-
 
 class Player:
     def __init__(self):
@@ -44,7 +39,6 @@ class Player:
         self.score = 0
         self.ace_count = 0
         self.money = 10000
-
 
     def add_card(self, deck):
         card = random.choice(deck.cards)
@@ -56,7 +50,6 @@ class Player:
             self.score -= 10
             self.ace_count -= 1
         deck.cards.remove(card)
-
 
 class BlackjackGame:
     def __init__(self):
@@ -74,7 +67,6 @@ class BlackjackGame:
 
 ----------------------------------------------------------------
         """)
-
 
     def get_bets(self):
         if self.player.money > 0:
@@ -95,7 +87,6 @@ class BlackjackGame:
                 self.get_bets()
         else:
             print("\033[2;35;50mYou are broke now but ill let you play anyways.\033[0m")
-
 
     def deal_cards(self):
         print(f"Dealing 2 cards to the dealer and the {self.player.nick}...")
