@@ -39,7 +39,7 @@ class Dealer:
 
 class Player:
     def __init__(self):
-        self.nick = input("Enter your nickname: ")
+        self.nick = input("\033[2;35;50mEnter your nickname:\033[0m ")
         self.hand = []
         self.score = 0
         self.ace_count = 0
@@ -88,12 +88,11 @@ class BlackjackGame:
                     better_bet = f'{self.bet:,}'.replace(',', '.')
                     print(f"Your bet is placed as \033[2;32;50m${better_bet}\033[0m\nYour current money is \033[2;32;50m${self.better_money}\033[0m")
                 else:
-                    if self.player.money <= 0:
-                        print("\033[2;31;50mYou ran out of money :(\033[0m")
-                    else:
-                        print("\033[2;31;50mInvalid bet.\033[0m")
+                    print("\033[2;31;50mYou dont have that much money.\033[0m")
+                    self.get_bets()
             except ValueError:
-                print("\033[2;31;50mInvalid input.\033[0m")
+                print("\033[2;31;50mInvalid bet.\033[0m")
+                self.get_bets()
         else:
             print("\033[2;35;50mYou are broke now but ill let you play anyways.\033[0m")
 
@@ -229,6 +228,7 @@ class BlackjackGame:
             choice = input("One more? (\033[2;32;50my\033[0m/\033[2;31;50mn\033[0m): ")
             if choice == 'n':
                 print(f"\033[2;35;50mBye {self.player.nick}. See you later!\033[0m")
+                time.sleep(1)
                 break
             elif choice == 'y':
                 pass
