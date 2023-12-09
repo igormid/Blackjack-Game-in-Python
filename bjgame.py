@@ -188,6 +188,7 @@ class BlackjackGame:
 
     def play_game(self):
         while True:
+            self.blackjack = False
             self.player.hand = []
             self.dealer.hand = []
             self.bet = 0
