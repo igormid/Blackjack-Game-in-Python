@@ -108,12 +108,12 @@ class BlackjackGame:
     def player_turn(self):
         while self.player.score < 21:
             choice = input("\nDo you want to \033[2;32;50mhit\033[0m, \033[2;31;50mstay\033[0m, or \033[2;33;50mdouble\033[0m? ").lower()
-            if choice == 'hit':
+            if choice == 'hit' or choice == 'hit':
                 self.hit()
-            elif choice == 'stay':
+            elif choice == 'stay' or choice == 'stay':
                 self.stand()
                 break
-            elif choice == 'double':
+            elif choice == 'double' choice == 'd':
                 self.double()
                 break
             else:
